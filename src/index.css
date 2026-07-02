@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  body {
+    @apply bg-background text-slate-100 antialiased overflow-x-hidden selection:bg-primary/30 selection:text-white;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-950;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-800 rounded-full border border-slate-950 hover:bg-slate-700 transition-colors;
+  }
+}
+
+@layer components {
+  /* Premium Glassmorphism Cards */
+  .glass-card {
+    @apply backdrop-blur-md bg-slate-900/40 border border-slate-800/80 rounded-2xl transition-all duration-300;
+  }
+  
+  .glass-card-interactive {
+    @apply glass-card hover:bg-slate-900/60 hover:border-slate-700/60 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1;
+  }
+
+  /* Glowing Borders */
+  .glow-border {
+    position: relative;
+  }
+  
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(to right, #3B82F6, #8B5CF6);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+  }
+
+  .glow-border:hover::before {
+    opacity: 0.9;
+  }
+
+  /* Text Gradients */
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 font-poppins;
+  }
+  
+  .text-gradient-secondary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 font-poppins;
+  }
+  
+  .text-gradient-accent {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-orange-400 font-poppins;
+  }
+
+  /* Button Gradients */
+  .btn-gradient {
+    @apply relative overflow-hidden bg-gradient-to-r from-primary to-secondary text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40 hover:scale-105 active:scale-95;
+  }
+
+  .btn-outline {
+    @apply relative overflow-hidden bg-transparent border border-slate-700 hover:border-slate-500 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 hover:bg-slate-900/50 hover:scale-105 active:scale-95;
+  }
+}
+
+/* Custom background animation container helper */
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 1) 0%, rgba(10, 15, 30, 1) 100%);
+}
+
+/* Timeline Custom Connector styling */
+.timeline-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 15px;
+  width: 2px;
+  @apply bg-gradient-to-b from-primary via-secondary to-transparent;
+}
+
+/* Skills progress animation */
+@keyframes progress-fill {
+  from { width: 0%; }
+}
+.animate-progress {
+  animation: progress-fill 1.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+}
+
+/* Background blob decorations */
+.blur-blob {
+  filter: blur(140px);
+  will-change: transform;
+}
